@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>호박 - 당신 근처의 따뜻한 중고거래</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/list-page.css" />
+  <link rel="stylesheet" href="css/detail-page.css" />
+  <link rel="stylesheet" href="css/write-page.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+  <!-- 상단 글로벌 헤더 -->
+  <header class="hobak-header">
+    <div class="hobak-header-inner">
+      <div class="hobak-header-top">
+        <button type="button" id="hobak-logo-btn" class="hobak-logo" aria-label="호박 홈으로 이동">
+          <span class="hobak-logo-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="28" height="28">
+              <path d="M16 4 C16 2, 18.5 1.5, 20 2.5 C19 4.5, 18 6, 17.5 7.5" fill="none" stroke="#2B8A3E" stroke-width="2.6" stroke-linecap="round"/>
+              <ellipse cx="11" cy="18.5" rx="7.2" ry="9.5" fill="#FF6F0F"/>
+              <ellipse cx="21" cy="18.5" rx="7.2" ry="9.5" fill="#FF6F0F"/>
+              <ellipse cx="16" cy="18.5" rx="6.2" ry="10.2" fill="#FF852F"/>
+              <path d="M13 15.5 C13.5 14.5, 14.5 14.5, 15 15.5 M17 15.5 C17.5 14.5, 18.5 14.5, 19 15.5" fill="none" stroke="#FFF4EA" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span>호박</span>
+        </button>
+
+        <form id="hobak-global-search-form" class="hobak-search-form" role="search">
+          <input
+            type="text"
+            id="hobak-global-search-input"
+            class="hobak-search-input"
+            placeholder="물품이나 동네를 검색해보세요 (예: 숏패딩, 니트, 방어동)"
+            autocomplete="off"
+            aria-label="상품 또는 동네 검색"
+          />
+          <button
+            type="button"
+            id="hobak-global-search-clear"
+            class="hobak-search-clear"
+            title="검색어 지우기"
+            aria-label="검색어 지우기"
+          >✕</button>
+          <button type="submit" class="hobak-search-btn" aria-label="검색하기">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </form>
+
+        <div class="hobak-header-actions" aria-label="계정 메뉴">
+          <button type="button" id="hobak-login-btn" class="hobak-btn-login">
+            로그인
+          </button>
+          <span id="hobak-user-nickname-btn" class="hobak-user-nickname-btn" hidden></span>
+          <button type="button" id="hobak-logout-btn" class="hobak-btn-logout" hidden>
+            로그아웃
+          </button>
+        </div>
+      </div>
+
+      <nav class="hobak-header-nav" aria-label="주요 메뉴">
+        <div class="hobak-nav-pills">
+          <button type="button" class="hobak-nav-pill" data-nav="all">
+            <span>🏠</span> 전체
+          </button>
+          <button type="button" class="hobak-nav-pill active" data-nav="used">
+            <span>🛍️</span> 중고거래
+          </button>
+          <button type="button" class="hobak-nav-pill" data-nav="local">
+            <span>🏪</span> 동네업체
+          </button>
+          <button type="button" class="hobak-nav-pill" data-nav="jobs">
+            <span>💼</span> 알바
+          </button>
+          <button type="button" class="hobak-nav-pill" data-nav="cars">
+            <span>🚗</span> 중고차
+          </button>
+          <button type="button" class="hobak-nav-pill" data-nav="realty">
+            <span>🏢</span> 부동산
+          </button>
+        </div>
+
+        <div class="hobak-nav-right">
+          <button type="button" id="hobak-db-status-badge" class="hobak-db-badge" title="Supabase DB 동기화 상태 (클릭 시 새로고침)">
+            <span class="hobak-db-dot" aria-hidden="true"></span>
+            <span class="hobak-db-text">Supabase DB 연동</span>
+          </button>
+          <button
+            type="button"
+            id="hobak-isometric-btn"
+            class="hobak-btn-isometric hobak-btn-isometric--compact"
+            data-ag-isometric-toggle
+            aria-pressed="false"
+            title="3D 아이소메트릭 공간 뷰 전환"
+          >
+            <span aria-hidden="true">🌌</span>
+            <span class="hobak-iso-label">3D 공간뷰</span>
+          </button>
+          <button type="button" id="hobak-reset-data-btn" class="hobak-btn-reset hobak-btn-reset--compact" title="초기 가상 데이터 10개로 복원">
+            초기화
+          </button>
+          <button type="button" id="hobak-write-top-btn" class="hobak-btn-write-top hobak-btn-write-top--compact">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>글쓰기</span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 메인 뷰 영역 -->
+  <main id="hobak-main" class="hobak-main">
+    <div id="hobak-view-container" class="hobak-main-inner"></div>
+  </main>
+
+  <!-- 글로벌 푸터 -->
+  <footer class="hobak-footer">
+    <div class="hobak-footer-inner">
+      <div class="hobak-footer-top">
+        <div class="hobak-footer-brand">
+          <span class="hobak-logo" style="font-size: 19px; cursor: default;">
+            <span class="hobak-logo-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" width="24" height="24">
+                <path d="M16 4 C16 2, 18.5 1.5, 20 2.5 C19 4.5, 18 6, 17.5 7.5" fill="none" stroke="#2B8A3E" stroke-width="2.6" stroke-linecap="round"/>
+                <ellipse cx="11" cy="18.5" rx="7.2" ry="9.5" fill="#FF6F0F"/>
+                <ellipse cx="21" cy="18.5" rx="7.2" ry="9.5" fill="#FF6F0F"/>
+                <ellipse cx="16" cy="18.5" rx="6.2" ry="10.2" fill="#FF852F"/>
+              </svg>
+            </span>
+            <span>호박</span>
+          </span>
+          <button type="button" class="hobak-footer-badge" data-footer-action="app">
+            📱 호박 앱 다운로드
+          </button>
+        </div>
+
+        <div class="hobak-footer-sns">
+          <button type="button" class="hobak-sns-btn" data-footer-action="youtube" aria-label="YouTube">▶</button>
+          <button type="button" class="hobak-sns-btn" data-footer-action="instagram" aria-label="Instagram">◎</button>
+          <button type="button" class="hobak-sns-btn" data-footer-action="blog" aria-label="Blog">B</button>
+        </div>
+      </div>
+
+      <div class="hobak-footer-cols">
+        <div class="hobak-footer-col">
+          <h4>회사</h4>
+          <ul>
+            <li><button type="button" data-footer-action="info">회사 소개</button></li>
+            <li><button type="button" data-footer-action="info">호박페이</button></li>
+            <li><button type="button" data-footer-action="info">호박 비즈니스</button></li>
+            <li><button type="button" data-footer-action="info">동네가게</button></li>
+            <li><button type="button" data-footer-action="info">채용 안내</button></li>
+          </ul>
+        </div>
+        <div class="hobak-footer-col">
+          <h4>탐색</h4>
+          <ul>
+            <li><button type="button" data-footer-action="go-list">중고거래</button></li>
+            <li><button type="button" data-footer-action="go-write">내 물건 팔기</button></li>
+            <li><button type="button" data-footer-action="info">동네업체</button></li>
+            <li><button type="button" data-footer-action="info">중고차 직거래</button></li>
+            <li><button type="button" data-footer-action="info">부동산 직거래</button></li>
+          </ul>
+        </div>
+        <div class="hobak-footer-col">
+          <h4>비즈니스</h4>
+          <ul>
+            <li><button type="button" data-footer-action="info">호박 비즈니스</button></li>
+            <li><button type="button" data-footer-action="info">동네광고 시작하기</button></li>
+            <li><button type="button" data-footer-action="info">제휴 문의</button></li>
+          </ul>
+        </div>
+        <div class="hobak-footer-col">
+          <h4>호박</h4>
+          <ul>
+            <li><button type="button" data-footer-action="info">호박 팀 블로그</button></li>
+            <li><button type="button" data-footer-action="info">중고거래 운영정책</button></li>
+            <li><button type="button" data-footer-action="info">매너온도 가이드</button></li>
+          </ul>
+        </div>
+        <div class="hobak-footer-col">
+          <h4>문의</h4>
+          <ul>
+            <li><button type="button" data-footer-action="info">고객센터</button></li>
+            <li><button type="button" data-footer-action="info">자주 묻는 질문</button></li>
+            <li><button type="button" data-footer-action="info">광고 문의</button></li>
+            <li><button type="button" data-footer-action="info">PR 문의</button></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="hobak-footer-legal">
+        <div>
+          <strong>(주)호박마켓</strong> &nbsp;|&nbsp; 대표: 호박팀장 &nbsp;|&nbsp; 사업자번호: 123-45-67890 &nbsp;|&nbsp; 통신판매업신고: 2026-울산동구-0100
+        </div>
+        <div>
+          주소: 울산광역시 동구 방어동 호박로 100 &nbsp;|&nbsp; 전화: 1544-0000 &nbsp;|&nbsp; 고객문의: cs@hobakmarket.kr
+        </div>
+        <div class="hobak-footer-legal-links">
+          <span>이용약관</span>
+          <span>개인정보처리방침</span>
+          <span>운영정책</span>
+          <span>위치기반서비스 이용약관</span>
+          <span>청소년보호정책</span>
+        </div>
+        <div>© Hobak Market Inc. All rights reserved.</div>
+        <div class="hobak-footer-lang">🌐 대한민국 · 한국어 ▾</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 공용 토스트 알림 -->
+  <div id="hobak-global-toast" class="hobak-toast" role="status" aria-live="polite"></div>
+
+  <!-- 스크립트 로드 (순서 중요: supabase-config -> auth -> data -> pages -> antigravity-motion -> app) -->
+  <script src="js/supabase-config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/list-page.js"></script>
+  <script src="js/detail-page.js"></script>
+  <script src="js/write-page.js"></script>
+  <script src="js/antigravity-motion.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

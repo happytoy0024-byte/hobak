@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "supabase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@supabase/mcp-server-supabase@latest",
+        "--project-ref=ruswlhyexyoapimnishj"
+      ],
+      "envFile": "${workspaceFolder}/.env",
+      "env": {
+        "SUPABASE_URL": "https://ruswlhyexyoapimnishj.supabase.co",
+        "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ1c3dsaHlleHlvYXBpbW5pc2hqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ4MjgzNTEsImV4cCI6MjExMDQwNDM1MX0.fXkqsIPxtw84A_9FxFopnW95i-ftDtLk-7S9hXjG4iA",
+        "SUPABASE_SERVICE_ROLE_KEY": "${SUPABASE_SERVICE_ROLE_KEY}",
+        "SUPABASE_ACCESS_TOKEN": "${SUPABASE_ACCESS_TOKEN}"
+      }
+    }
+  }
+}

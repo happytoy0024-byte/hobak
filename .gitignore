@@ -1,0 +1,9 @@
+# 환경 변수 및 민감 키 보호
+.env
+.env.*
+!.env.example
+
+# OS / 에디터 임시 파일
+.DS_Store
+Thumbs.db
+*.log
